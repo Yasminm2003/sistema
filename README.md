@@ -59,7 +59,7 @@ Acesse http://localhost:8000
 
 Crie um departamento via Blade
 
-Verifique em http://localhost/phpmyadmin na tabela departamentos
+Verifique em http://localhost/phpmyadmin na tabela departamentos (banco Laravel)
 
 //Frontend com Vue.js
 Interface interativa para cadastro e visualização de departamentos 

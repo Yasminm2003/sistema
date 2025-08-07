@@ -1,4 +1,4 @@
-Sistema de Cadastro de Itens por Departamento
+ -Sistema de Cadastro de Itens por Departamento
 
 API RESTful em Laravel 11 para gerenciar departamentos e seus respectivos itens.
 

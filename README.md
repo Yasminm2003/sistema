@@ -1,5 +1,62 @@
-# sistema
+Sistema de Cadastro de Itens por Departamento
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+API RESTful em Laravel 11 para gerenciar departamentos e seus respectivos itens.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+ Tecnologias
+
+- Laravel 11
+- PHP 8.1+
+- MySQL 8
+- XAMPP + phpMyAdmin
+- Docker
+
+ Instalação
+
+```bash
+git clone <repo>
+cd backend
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan serve
+
+Configure o .env com:
+env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+Endpoints
+Departamentos
+GET /api/departamentos
+
+GET /api/departamentos/{id}
+
+POST /api/departamentos
+
+PUT /api/departamentos/{id}
+
+DELETE /api/departamentos/{id}
+
+Itens
+GET /api/items
+
+GET /api/items/{id}
+
+POST /api/items
+
+PUT /api/items/{id}
+
+DELETE /api/items/{id}
+
+Teste
+Acesse http://localhost:8000
+
+Crie um departamento via Blade
+
+Verifique em http://localhost/phpmyadmin na tabela departamentos

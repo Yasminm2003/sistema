@@ -60,3 +60,38 @@ Acesse http://localhost:8000
 Crie um departamento via Blade
 
 Verifique em http://localhost/phpmyadmin na tabela departamentos
+
+//Frontend com Vue.js
+Interface interativa para cadastro e visualização de departamentos 
+Tecnologias
+Vue 3 + Vite
+
+Axios
+
+Tailwind CSS (opcional)
+
+Livewire (para integração Blade, se usado em paralelo)
+
+Instalação
+bash
+cd frontend
+npm install
+npm run dev
+
+ Funcionalidades
+Listagem de departamentos
+
+Cadastro de novos departamentos
+
+Edição e exclusão de departamentos
+
+Integração com API
+O Vue consome os endpoints RESTful do Laravel via Axios. Exemplo de chamada:
+
+js
+axios.get('http://localhost:8000/api/departamentos')
+  .then(response => {
+    console.log(response.data);
+  });
+Teste
+Acesse http://localhost:5174/ para visualizar a interface Vue em desenvolvimento.

@@ -105,7 +105,7 @@ axios.get('http://localhost:8000/api/departamentos')
     console.log(response.data);
   });
 Teste do Frontend
-Acesse: http://localhost:5174/ para visualizar a interface Vue em modo de desenvolvimento.
+Acesse: http://localhost:5173 para visualizar a interface Vue em modo de desenvolvimento.
 
 ✅ Observações Finais
 Não suba o arquivo .env no repositório.

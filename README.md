@@ -27,7 +27,7 @@ API RESTful desenvolvida em **Laravel 11** para gerenciar departamentos e seus r
 
 ```bash
 git clone <repo>
-cd backend
+cd backend // cd sistema-novo (raiz do projeto)
 cp .env.example .env
 composer install
 php artisan key:generate

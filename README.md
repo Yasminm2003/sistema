@@ -1,18 +1,29 @@
- -Sistema de Cadastro de Itens por Departamento
+ Sistema de Cadastro de Itens por Departamento
+API RESTful desenvolvida em Laravel 11 para gerenciar departamentos e seus respectivos itens.
 
-API RESTful em Laravel 11 para gerenciar departamentos e seus respectivos itens.
+Tecnologias Utilizadas
+Laravel 11
 
- Tecnologias
+PHP 8.1+
 
-- Laravel 11
-- PHP 8.1+
-- MySQL 8
-- XAMPP + phpMyAdmin
-- Docker
+MySQL 8
 
- Instalação
+XAMPP + phpMyAdmin
 
-```bash
+Docker (opcional)
+
+Vue 3 + Vite (Frontend)
+
+Axios (consumo de API)
+
+Tailwind CSS (opcional)
+
+Livewire (integração com Blade, opcional)
+
+Instalação Backend (Laravel)
+bash
+Copiar
+Editar
 git clone <repo>
 cd backend
 cp .env.example .env
@@ -20,49 +31,43 @@ composer install
 php artisan key:generate
 php artisan migrate
 php artisan serve
-
-Configure o .env com:
+Configuração do arquivo .env
 env
+Copiar
+Editar
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
-
-
-Endpoints
+Endpoints da API
 Departamentos
-GET /api/departamentos
-
-GET /api/departamentos/{id}
-
-POST /api/departamentos
-
-PUT /api/departamentos/{id}
-
-DELETE /api/departamentos/{id}
+Método	Endpoint	Descrição
+GET	/api/departamentos	Listar todos os departamentos
+GET	/api/departamentos/{id}	Mostrar departamento por ID
+POST	/api/departamentos	Criar novo departamento
+PUT	/api/departamentos/{id}	Atualizar departamento
+DELETE	/api/departamentos/{id}	Deletar departamento
 
 Itens
-GET /api/items
+Método	Endpoint	Descrição
+GET	/api/items	Listar todos os itens
+GET	/api/items/{id}	Mostrar item por ID
+POST	/api/items	Criar novo item
+PUT	/api/items/{id}	Atualizar item
+DELETE	/api/items/{id}	Deletar item
 
-GET /api/items/{id}
+Teste Backend
+Acesse: http://localhost:8000
 
-POST /api/items
+Crie departamentos via Blade (interface backend)
 
-PUT /api/items/{id}
+Verifique os dados no phpMyAdmin: http://localhost/phpmyadmin na tabela departamentos
 
-DELETE /api/items/{id}
+Frontend (Vue.js)
+Interface interativa para cadastro e visualização de departamentos.
 
-Teste
-Acesse http://localhost:8000
-
-Crie um departamento via Blade
-
-Verifique em http://localhost/phpmyadmin na tabela departamentos (banco Laravel)
-
-//Frontend com Vue.js
-Interface interativa para cadastro e visualização de departamentos 
 Tecnologias
 Vue 3 + Vite
 
@@ -70,28 +75,27 @@ Axios
 
 Tailwind CSS (opcional)
 
-Livewire (para integração Blade, se usado em paralelo)
+Livewire (se usar Blade em paralelo)
 
-Instalação
+Instalação Frontend
 bash
+Copiar
+Editar
 cd frontend
 npm install
 npm run dev
+Funcionalidades
+Listagem, cadastro, edição e exclusão de departamentos
 
- Funcionalidades
-Listagem de departamentos
+Integração com API Laravel via Axios
 
-Cadastro de novos departamentos
-
-Edição e exclusão de departamentos
-
-Integração com API
-O Vue consome os endpoints RESTful do Laravel via Axios. Exemplo de chamada:
-
+Exemplo de chamada API via Axios
 js
+Copiar
+Editar
 axios.get('http://localhost:8000/api/departamentos')
   .then(response => {
     console.log(response.data);
   });
-Teste
-Acesse http://localhost:5174/ para visualizar a interface Vue em desenvolvimento.
+Teste Frontend
+Acesse: http://localhost:5174/ para visualizar a interface Vue em desenvolvimento.

@@ -1,7 +1,7 @@
 
 # Sistema de Cadastro de Itens por Departamento
 
-API RESTful desenvolvida em **Laravel 11** para gerenciar departamentos e seus respectivos iten,com frontend em Vue 3.
+API RESTful desenvolvida em **Laravel 11** para gerenciar departamentos e seus respectivos itens,com frontend em Vue 3.
 
 ---
 

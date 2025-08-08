@@ -1,6 +1,6 @@
-import './bootstrap';  // seu bootstrap Laravel, se tiver configurações específicas
-
+// app.js
+import './bootstrap';
 import { createApp } from 'vue';
-import App from './App.vue';
+import Departamento from './components/Departamento.vue';
 
-createApp(App).mount('#app');
+createApp(Departamento).mount('#app');

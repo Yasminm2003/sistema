@@ -2,64 +2,73 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Departamento;
+use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
 {
-    protected $departamento;
-    public function _construct(){
-        $this->departamento= new Departamento();
-    }
-
     
     public function index()
     {
-        //
+        $departamentos = Departamento::all();
+        return response()->json($departamentos);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
-        //
+        $departamento = Departamento::with('itens')->find($id);
+        if (!$departamento) {
+            return response()->json(['message' => 'Departamento não encontrado'], 404);
+        }
+        return response()->json($departamento);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+        ]);
+
+        $departamento = Departamento::create($request->all());
+        return response()->json($departamento, 201);
+    }
+
+    
     public function update(Request $request, $id)
     {
-        //
+        $departamento = Departamento::find($id);
+        if (!$departamento) {
+            return response()->json(['message' => 'Departamento não encontrado'], 404);
+        }
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+        ]);
+
+        $departamento->update($request->all());
+        return response()->json($departamento);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
-        //
+        $departamento = Departamento::find($id);
+        if (!$departamento) {
+            return response()->json(['message' => 'Departamento não encontrado'], 404);
+        }
+
+        $departamento->delete();
+        return response()->json(['message' => 'Departamento excluído com sucesso']);
+    }
+
+    
+    public function visualizar($id)
+    {
+        $departamento = Departamento::with('itens')->findOrFail($id);
+        return view('departamento', compact('departamento'));
     }
 }

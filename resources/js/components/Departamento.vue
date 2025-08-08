@@ -12,6 +12,7 @@
             v-model="departamento.nome"
             class="form-control"
             placeholder="Nome do Departamento"
+            required
           />
         </div>
         <div class="form-group mb-2">
@@ -21,6 +22,7 @@
             v-model="departamento.descricao"
             class="form-control"
             placeholder="Descrição"
+            required
           />
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
@@ -44,7 +46,7 @@
           <td>{{ dep.descricao }}</td>
           <td>
             <button class="btn btn-warning" @click="edit(dep)">Editar</button>
-            <button class="btn btn-danger" @click="remove(dep)">Excluir</button>
+            <button class="btn btn-danger" @click="remove(dep.id)">Excluir</button>
           </td>
         </tr>
         <tr v-if="departamentos.length === 0">
@@ -56,57 +58,74 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Departamento',
   data() {
     return {
-      departamentos: [
-        { id: 1, nome: 'TI', descricao: 'Tecnologia da Informação' },
-        { id: 2, nome: 'RH', descricao: 'Recursos Humanos' },
-      ],
+      departamentos: [],
       departamento: {
         id: '',
         nome: '',
-        descricao: '',
-      },
-      nextId: 3, // para simular auto incremento
-    };
+        descricao: ''
+      }
+    }
+  },
+  mounted() {
+    this.fetchDepartamentos()
   },
   methods: {
-    save() {
-      if (this.departamento.id === '') {
-        this.createDepartamento();
-      } else {
-        this.updateDepartamento();
+    async fetchDepartamentos() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/departamentos')
+        this.departamentos = response.data
+      } catch (error) {
+        console.error('Erro ao buscar departamentos:', error)
       }
     },
-    createDepartamento() {
-      const novo = { ...this.departamento, id: this.nextId++ };
-      this.departamentos.push(novo);
-      this.clearForm();
+    async save() {
+      if (this.departamento.id === '') {
+        await this.createDepartamento()
+      } else {
+        await this.updateDepartamento()
+      }
+    },
+    async createDepartamento() {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/departamentos', this.departamento)
+        this.departamentos.push(response.data)
+        this.clearForm()
+      } catch (error) {
+        console.error('Erro ao criar departamento:', error)
+      }
     },
     edit(dep) {
-      this.departamento = { ...dep };
+      this.departamento = { ...dep }
     },
-    updateDepartamento() {
-      const index = this.departamentos.findIndex(
-        (d) => d.id === this.departamento.id
-      );
-      if (index !== -1) {
-        this.departamentos[index] = { ...this.departamento };
+    async updateDepartamento() {
+      try {
+        await axios.put(`http://127.0.0.1:8000/api/departamentos/${this.departamento.id}`, this.departamento)
+        const index = this.departamentos.findIndex(d => d.id === this.departamento.id)
+        if (index !== -1) {
+          this.departamentos[index] = { ...this.departamento }
+        }
+        this.clearForm()
+      } catch (error) {
+        console.error('Erro ao atualizar departamento:', error)
       }
-      this.clearForm();
     },
-    remove(dep) {
-      this.departamentos = this.departamentos.filter((d) => d.id !== dep.id);
+    async remove(id) {
+      try {
+        await axios.delete(`http://127.0.0.1:8000/api/departamentos/${id}`)
+        this.departamentos = this.departamentos.filter(d => d.id !== id)
+      } catch (error) {
+        console.error('Erro ao deletar departamento:', error)
+      }
     },
     clearForm() {
-      this.departamento = {
-        id: '',
-        nome: '',
-        descricao: '',
-      };
-    },
-  },
-};
+      this.departamento = { id: '', nome: '', descricao: '' }
+    }
+  }
+}
 </script>

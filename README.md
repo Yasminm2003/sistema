@@ -1,7 +1,7 @@
 
 # Sistema de Cadastro de Itens por Departamento
 
-API RESTful desenvolvida em **Laravel 11** para gerenciar departamentos e seus respectivos itens.
+API RESTful desenvolvida em **Laravel 11** para gerenciar departamentos e seus respectivos iten,com frontend em Vue 3.
 
 ---
 
@@ -13,6 +13,7 @@ API RESTful desenvolvida em **Laravel 11** para gerenciar departamentos e seus r
 - MySQL 8  
 - XAMPP + phpMyAdmin  
 - Docker (opcional)
+
 
 ### Frontend
 - Vue 3 + Vite  
@@ -83,7 +84,7 @@ Instalação do Frontend
 bash
 Copiar
 Editar
-cd frontend
+cd vite-project  
 npm install
 npm run dev
 Funcionalidades
